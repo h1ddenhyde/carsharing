@@ -41,7 +41,6 @@ public class ScheduledTask {
 
     public void reportCurrentTime() {
         try {
-            System.out.println("Count " + ++count);
 
             Document doc = Jsoup.connect(URL).maxBodySize(0).userAgent(GOOGLE).get();
 
