@@ -2,12 +2,13 @@ package web.parser.carsharing.task;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputHandler {
 
-    private String input;
+    private final String input;
 
     public InputHandler(String string) {
         this.input = string;
@@ -16,12 +17,11 @@ public class InputHandler {
     public String handle() {
         String _cars = input.substring(input.indexOf("var cars ="), input.indexOf("]);") + 1);
         String decoded = decode(_cars);
-        String parsed = parse(decoded);
-        return parsed;
+        return parse(decoded);
     }
 
     private String decode(String s) {
-        Charset cset = Charset.forName("UTF-8");
+        Charset cset = StandardCharsets.UTF_8;
         ByteBuffer buf = cset.encode(s);
         byte[] b = buf.array();
         return new String(b);
