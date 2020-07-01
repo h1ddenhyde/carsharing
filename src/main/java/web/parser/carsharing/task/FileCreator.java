@@ -16,15 +16,18 @@ import java.util.Date;
 public class FileCreator {
     String input;
     String path;
+    String workingDirectory;
 
-    public FileCreator(String input) {
+    public FileCreator(String input, String workingDirectory) {
         this.input = input;
+        this.workingDirectory = workingDirectory;
     }
 
     public boolean createFile() throws IOException, ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-z");
         String format = dateFormat.format(new Date());
-        this.path = format + "_cars.txt";
+
+        this.path = workingDirectory + format + "_cars.txt";
 
         JSONArray data = getJSON(input);
         StringBuilder sb = new StringBuilder();
